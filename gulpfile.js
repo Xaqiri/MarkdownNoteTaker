@@ -23,6 +23,10 @@ gulp.task('watch', ['browserSync', 'webpack'], () => {
   gulp.watch('src/js/**/*.jsx', () => {
     gulp.start('webpack')
   })
+  gulp.watch('src/css/**/*.css', () => {
+    gulp.start('webpack')
+  })
+
   gulp.watch('index.html', browserSync.reload)
   gulp.watch('./src/js/bundle.js', browserSync.reload)
 })

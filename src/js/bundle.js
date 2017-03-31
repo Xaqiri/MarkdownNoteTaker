@@ -9457,6 +9457,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(52);
 
+var styles = {
+  background: 'black',
+  color: 'white',
+  opacity: '90%',
+  width: '100%',
+  height: '100%',
+  //float: 'left',
+  //display: 'inline',
+  //position: 'fixed',
+  padding: '1%',
+  marginTop: 0,
+  marginBottom: '5%'
+  //display: 'block'
+};
+
+var brand = {
+  display: 'inline',
+  float: 'left'
+};
+
+var navitem = {
+  display: 'inline'
+};
+
 var Nav = function (_React$Component) {
   _inherits(Nav, _React$Component);
 
@@ -9471,8 +9495,17 @@ var Nav = function (_React$Component) {
     value: function render() {
       return React.createElement(
         'div',
-        null,
-        'Navigation'
+        { style: styles },
+        React.createElement(
+          'h1',
+          null,
+          'TakeNote'
+        ),
+        React.createElement(
+          'a',
+          { style: navitem, href: '#' },
+          'All'
+        )
       );
     }
   }]);
@@ -9503,6 +9536,13 @@ var React = __webpack_require__(52);
 var ReactDOM = __webpack_require__(81);
 var Nav = __webpack_require__(80);
 
+var noteSectionStyle = {
+  margin: '0 auto',
+  padding: '1%',
+  width: '80%',
+  background: '#DDD'
+};
+
 var App = React.createClass({
   displayName: 'App',
 
@@ -9512,9 +9552,33 @@ var App = React.createClass({
       null,
       React.createElement(Nav, null),
       React.createElement(
-        'h1',
-        null,
-        'Hello React'
+        'div',
+        { style: noteSectionStyle },
+        React.createElement(
+          'h1',
+          null,
+          'Notes'
+        ),
+        React.createElement(
+          'h2',
+          null,
+          '1. Note'
+        ),
+        React.createElement(
+          'h2',
+          null,
+          '2. Note'
+        ),
+        React.createElement(
+          'h2',
+          null,
+          '3. Note'
+        ),
+        React.createElement(
+          'h2',
+          null,
+          '4. Note'
+        )
       )
     );
   }
