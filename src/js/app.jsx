@@ -1,6 +1,7 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
 const Nav = require('./components/Nav')
+const Note = require('./components/Note')
 
 const noteSectionStyle = {
   margin: '0 auto',
@@ -16,10 +17,10 @@ let App = React.createClass ({
  	<Nav />
 	<div style={noteSectionStyle}>
 	  <h1>Notes</h1>
-	  <h2>1. Note</h2>
-	  <h2>2. Note</h2>
-	  <h2>3. Note</h2>
-	  <h2>4. Note</h2>
+	  <Note />
+	  <Note />
+	  <Note />
+	  <Note />
 	</div> 
       </div>
     )
