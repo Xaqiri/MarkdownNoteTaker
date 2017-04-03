@@ -9532,55 +9532,38 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(31);
 
-var style = {
-  fontSize: '2em',
-  width: '90%',
-  height: '100%',
-  border: '1px solid black',
-  margin: '0.5% auto',
-  flex: 'flexBox'
-};
-
-var note = {
-  height: '100%',
-  display: 'inline-block',
-  padding: '1em'
-};
-
-var remove = {
-  display: 'inline',
-  width: '5%',
-  textAlign: 'center',
-  background: 'green',
-  color: 'white',
-  padding: '1em',
-  float: 'right'
-};
-
 var Note = function (_React$Component) {
   _inherits(Note, _React$Component);
 
-  function Note() {
+  function Note(props) {
     _classCallCheck(this, Note);
 
-    return _possibleConstructorReturn(this, (Note.__proto__ || Object.getPrototypeOf(Note)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Note.__proto__ || Object.getPrototypeOf(Note)).call(this, props));
+
+    _this.num = _this.props.num;
+    return _this;
   }
 
   _createClass(Note, [{
-    key: 'render',
+    key: "handleRemove",
+    value: function handleRemove() {
+      this.delete();
+    }
+  }, {
+    key: "render",
     value: function render() {
       return React.createElement(
-        'div',
-        { className: 'note' },
+        "div",
+        { className: "note" },
         React.createElement(
-          'div',
-          { className: 'note__title' },
-          'Note'
+          "div",
+          { className: "note__title" },
+          this.num
         ),
         React.createElement(
-          'div',
-          { className: 'note__delete' },
-          '-'
+          "div",
+          { className: "note__delete", onClick: this.handleRemove },
+          "-"
         )
       );
     }
@@ -9618,14 +9601,18 @@ var App = React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      notes: 0
+      notes: []
     };
   },
-  handleClick: function handleClick() {
-    var numNotes = this.state.notes;
-    this.setState({ notes: numNotes++ });
+  handleAdd: function handleAdd() {
+    var numNotes = this.state.notes.length;
+    numNotes++;
+    var notes = this.state.notes;
+    notes.push(React.createElement(Note, { key: numNotes, num: numNotes }));
+    this.setState({ notes: notes });
   },
   render: function render() {
+    // let notes = [<Note/>, <Note/>]
     return React.createElement(
       'div',
       null,
@@ -9643,15 +9630,11 @@ var App = React.createClass({
           ),
           React.createElement(
             'div',
-            { className: 'notes-container__add', onClick: this.handleClick },
+            { className: 'notes-container__add', onClick: this.handleAdd },
             '+'
           )
         ),
-        React.createElement(
-          'h1',
-          null,
-          this.state.notes
-        )
+        this.state.notes
       )
     );
   }
