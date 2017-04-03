@@ -9534,27 +9534,25 @@ var React = __webpack_require__(31);
 
 var style = {
   fontSize: '2em',
-  //width: '100%',
   width: '90%',
   height: '100%',
   border: '1px solid black',
-  margin: '0.5% auto'
+  margin: '0.5% auto',
+  flex: 'flexBox'
 };
 
 var note = {
   height: '100%',
   display: 'inline-block',
   padding: '1em'
-  //float: 'left'
 };
 
 var remove = {
   display: 'inline',
   width: '5%',
-  //height: '3em',
   textAlign: 'center',
-  //background: 'orange',
-  color: 'red',
+  background: 'green',
+  color: 'white',
   padding: '1em',
   float: 'right'
 };
@@ -9573,15 +9571,15 @@ var Note = function (_React$Component) {
     value: function render() {
       return React.createElement(
         'div',
-        { style: style },
+        { className: 'note' },
         React.createElement(
           'div',
-          { style: note },
+          { className: 'note__title' },
           'Note'
         ),
         React.createElement(
           'div',
-          { style: remove },
+          { className: 'note__delete' },
           '-'
         )
       );
@@ -9615,16 +9613,18 @@ var ReactDOM = __webpack_require__(82);
 var Nav = __webpack_require__(80);
 var Note = __webpack_require__(81);
 
-var noteSectionStyle = {
-  margin: '0 auto',
-  padding: '1%',
-  width: '80%',
-  background: '#DDD'
-};
-
 var App = React.createClass({
   displayName: 'App',
 
+  getInitialState: function getInitialState() {
+    return {
+      notes: 0
+    };
+  },
+  handleClick: function handleClick() {
+    var numNotes = this.state.notes;
+    this.setState({ notes: numNotes++ });
+  },
   render: function render() {
     return React.createElement(
       'div',
@@ -9632,16 +9632,26 @@ var App = React.createClass({
       React.createElement(Nav, null),
       React.createElement(
         'div',
-        { style: noteSectionStyle },
+        { className: 'notes-container' },
+        React.createElement(
+          'div',
+          { className: 'notes-container__header' },
+          React.createElement(
+            'div',
+            { className: 'notes-container__title' },
+            'Notes'
+          ),
+          React.createElement(
+            'div',
+            { className: 'notes-container__add', onClick: this.handleClick },
+            '+'
+          )
+        ),
         React.createElement(
           'h1',
           null,
-          'Notes'
-        ),
-        React.createElement(Note, null),
-        React.createElement(Note, null),
-        React.createElement(Note, null),
-        React.createElement(Note, null)
+          this.state.notes
+        )
       )
     );
   }

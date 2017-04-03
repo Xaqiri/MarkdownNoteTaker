@@ -3,25 +3,27 @@ const ReactDOM = require('react-dom')
 const Nav = require('./components/Nav')
 const Note = require('./components/Note')
 
-const noteSectionStyle = {
-  margin: '0 auto',
-  padding: '1%',
-  width: '80%',
-  background: '#DDD'
-}
-
 let App = React.createClass ({
+  getInitialState: function () {
+    return {
+      notes: 0
+    }
+  },
+  handleClick: function () {
+    let numNotes = this.state.notes
+    this.setState({notes: numNotes++})
+  },
   render: function () {
     return (
       <div>
- 	<Nav />
-	<div style={noteSectionStyle}>
-	  <h1>Notes</h1>
-	  <Note />
-	  <Note />
-	  <Note />
-	  <Note />
-	</div> 
+ 	      <Nav />
+	      <div className="notes-container">
+	        <div className="notes-container__header">
+            <div className="notes-container__title">Notes</div>
+            <div className="notes-container__add" onClick={this.handleClick}>+</div>
+          </div>
+          <h1>{this.state.notes}</h1>
+        </div> 
       </div>
     )
   }
